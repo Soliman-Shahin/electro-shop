@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Electro Shop</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="./images/icon.png">
+</head>
+
+<body>
+
+    <div id="colorlib-page">
+        <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+        <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
+            <h1 id="colorlib-logo"><a href="index.html"><span><img height="150vmin" src="./images/icon.png"></span>Electro Shop</a></h1>
+            <nav id="colorlib-main-menu" role="navigation">
+                <ul>
+                    <li class="colorlib-active"><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a class="nav-link dropright" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Categories
+						  </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#" onclick="setAddCategoryModal()" data-toggle="modal" data-target="#categoryModal">Add Category</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="categories.html">Categories</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a class="nav-link dropright" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							products
+				  </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#" onclick="setAddProductModal()" data-toggle="modal" data-target="#productModal">Add Product</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Products</a>
+                        </div>
+                    </li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="colorlib-footer">
+                <h3>Follow Us Here!</h3>
+                <div class="d-flex justify-content-center">
+                    <ul class="d-flex align-items-center">
+                        <li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-facebook"></i></a></li>
+                        <li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-twitter"></i></a></li>
+                        <li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-instagram"></i></a></li>
+                        <li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <!-- END COLORLIB-ASIDE -->
+
+
+        <div id="colorlib-main">
+            <section class="ftco-section bg-light ftco-bread">
+                <div class="container">
+                    <div data-bind="foreach: productsData">
+                        <div class="category flex-nowrap d-inline">
+                            <div class="badge badge-warning">
+                                <a href="category.html">
+                                    <h3 style="float: left;"><span data-bind="text:category"></span></h3>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <h1> <span class="text-muted badge"> List of our Products</span></h1>
+                    <div data-bind="foreach: productsData">
+                        <div class="category flex-nowrap">
+                            <div class="category flex-nowrap">
+                                <div class="card-columns" data-bind="foreach:products">
+                                    <div class="card product border-secondary">
+                                        <img height="320vmin" class="card-img-top" data-bind="attr:{src:prodImg}" />
+                                        <div class="card-body">
+                                            <h1> <span class="badge badge-success text-center text-dark" data-bind="text:$parent.category"></span></h1>
+                                            <h2> <span class="badge badge-secondary" data-bind="text:type"></span></h2>
+                                            <h5 class="card-title" data-bind="text:prodName"></h5>
+                                            <p class="card-text" data-bind="text:description">
+                                            </p>
+                                            <h1 class="badge-info text-center text-light" data-bind="text:price +' £E'"> </h1>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a href="#" class="btn btn-info">Details</a>
+                                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#productModal" data-bind="click:setEditProductModal($parent._id,_id,prodNo,prodName,price,type,description)">Edit</a>
+                                            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-bind="click:setRemoveModal('product',prodNo,$parent._id)">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- END COLORLIB-MAIN -->
+    </div>
+    <!-- END COLORLIB-PAGE -->
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+
+    <!-- Add Category Modal -->
+    <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="categoryModalTitle">Add New Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	  </button>
+                </div>
+                <form id="categoryForm" method="POST" action="categoryProducts/categoryCreate">
+                    <div class="modal-body">
+                        <input id="formOprationType" type="hidden" value="add">
+                        <input id="category_id" type="hidden">
+                        <label for="category"> category Name:</label>
+                        <input id="category" type="text" class="form-control" placeholder="Enter category Name">
+                        <label for="notes"> Notes:</label>
+                        <input id="notes" type="text" class="form-control" placeholder="Enter Notes">
+                        <small id="msg" class="form-text text-muted"></small>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Save changes">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Add Product Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalTitle">Add New Product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <form id="productForm" method="POST" action="" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <input id="cp_formOprationType" type="hidden" value="add">
+                            <input id="cp_category_id" type="hidden">
+                            <input id="cp_product_id" type="hidden">
+
+                            <label for="category">Select Category:</label>
+                            <select id="productCategory" data-bind="foreach:productsData" class="form-control">
+                               <option data-bind="text:category, value:_id"></option>
+                            </select>
+
+                            <label for="type">Type:</label>
+                            <select id="type" class="form-control">
+                               <option value="New">New</option>
+                               <option value="Sale">Sale</option>
+                            </select>
+
+                            <label for="prodNo">Product Number:</label>
+                            <input id="prodNo" type="text" class="form-control" placeholder="Enter Product Number">
+
+                            <label for="prodName">product Name:</label>
+                            <input id="prodName" type="text" class="form-control" placeholder="Enter Product Name">
+
+                            <label for="description">description:</label>
+                            <input id="description" type="text" class="form-control" placeholder="Enter product description">
+
+                            <label for="price">price:</label>
+                            <input id="price" type="text" class="form-control" placeholder="Enter product Price">
+
+                            <label for="imageFile">product Image:</label>
+                            <input id="imageFile" name="imageFile" type="file" class="form-control">
+
+                            <small id="prodMsg" class="form-text text-muted"></small>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" value="Save changes">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Remove Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalTitle">Remove Record</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <form id="removeEntry" method="POST" action="countryCustomers/???">
+                    <div class=" modal-body">
+                        Do you really want to delete this record?
+                        <input id="deleteType" type="hidden">
+                        <input id="deleteId" type="hidden">
+                        <input id="parentId" type="hidden">
+                    </div>
+                    <small id="removeMsg" class="form-text text-muted"></small>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Yes, Remove">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script type="text/javascript " src="./js/knockout.js"></script>
+    <script type="text/javascript " src="./models/productVM.js"></script>
+
+</body>
+
+</html>

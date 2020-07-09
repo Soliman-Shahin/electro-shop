@@ -1,0 +1,19 @@
+{
+    "name": "electroshop",
+    "version": "1.0.0",
+    "description": "design CRUD Restful API with Nodejs and Monoose in MVC design Pattern",
+    "main": "app.js",
+    "scripts": {
+        "test": "node app.js"
+    },
+    "author": "Soliman Shahin",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "express-fileupload": "^1.1.6",
+        "mongoose": "^5.9.10",
+        "nodemon": "^1.19.4"
+    }
+}
